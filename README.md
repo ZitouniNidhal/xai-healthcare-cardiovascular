@@ -1,6 +1,6 @@
 # 🫀 XAI-Healthcare: Explainable AI for Early Cardiovascular Disease Detection
 
-[![CI](https://github.com/your-username/xai-healthcare-cardiovascular/actions/workflows/ci.yml/badge.svg)](https://github.com/your-username/xai-healthcare-cardiovascular/actions/workflows/ci.yml)
+[![CI](https://github.com/ZitouniNidhal/xai-healthcare-cardiovascular/actions/workflows/ci.yml/badge.svg)](https://github.com/ZitouniNidhal/xai-healthcare-cardiovascular/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 
@@ -57,7 +57,7 @@ Patient Data (ECG, MRI, Clinical Records)
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/xai-healthcare-cardiovascular.git
+git clone https://github.com/ZitouniNidhal/xai-healthcare-cardiovascular.git
 cd xai-healthcare-cardiovascular
 
 # Create virtual environment
@@ -154,9 +154,8 @@ This project is licensed under the MIT License — see the [LICENSE](LICENSE) fi
 
 ## 📬 Contact
 
-- **Author**: [Your Name]
-- **Email**: your.email@example.com
-- **Institution**: [Your University/Organization]
+- **Author**: Nidhal Zitouni
+- **GitHub**: [ZitouniNidhal](https://github.com/ZitouniNidhal)
 
 ## 🙏 Acknowledgments
 
