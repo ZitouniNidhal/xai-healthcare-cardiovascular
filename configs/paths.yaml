@@ -1,0 +1,20 @@
+# File paths for raw, processed, and outputs
+data:
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  raw_tabular: "data/raw/mimic_patients.csv"
+  raw_ecg: "data/raw/ecg_signals.npy"
+  processed_tabular: "data/processed/mimic_patients_processed.csv"
+  processed_ecg: "data/processed/ecg_signals_processed.npy"
+
+models:
+  saved_models_dir: "experiments/saved_models"
+  xgboost_path: "experiments/saved_models/xgboost_shap_model.pkl"
+  ecg_cnn_path: "experiments/saved_models/cnn_ecg_best.pt"
+
+outputs:
+  logs_dir: "experiments/logs"
+  outputs_dir: "experiments/outputs"
+  shap_plot_path: "experiments/outputs/shap_summary_plot.png"
+  gradcam_plot_path: "experiments/outputs/gradcam_heatmap.png"
+  metrics_csv_path: "experiments/outputs/performance_metrics.csv"

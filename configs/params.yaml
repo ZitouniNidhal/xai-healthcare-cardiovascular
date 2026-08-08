@@ -1,0 +1,22 @@
+# Hyperparameters for models and pipelines
+xgboost:
+  n_estimators: 200
+  max_depth: 5
+  learning_rate: 0.05
+  subsample: 0.8
+  colsample_bytree: 0.8
+  random_state: 42
+
+ecg_cnn:
+  epochs: 10
+  batch_size: 32
+  learning_rate: 0.001
+  input_channels: 12
+  sample_rate: 500
+  signal_length: 5000  # 10 seconds at 500 Hz
+
+preprocessing:
+  test_size: 0.2
+  val_size: 0.1
+  random_state: 42
+  imputation_strategy: "median"  # mean, median, or knn

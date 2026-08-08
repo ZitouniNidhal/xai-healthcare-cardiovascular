@@ -1,0 +1,95 @@
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+
+# =========================
+# Virtual Environments
+# =========================
+venv/
+env/
+.env
+.venv
+
+# =========================
+# Data (DO NOT COMMIT RAW DATA)
+# =========================
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/README.md
+
+# =========================
+# Experiment Outputs
+# =========================
+experiments/logs/*
+experiments/saved_models/*
+experiments/outputs/*
+!experiments/logs/.gitkeep
+!experiments/saved_models/.gitkeep
+!experiments/outputs/.gitkeep
+
+# =========================
+# Jupyter Notebooks
+# =========================
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# =========================
+# IDE / Editor
+# =========================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# =========================
+# Model Files
+# =========================
+*.pkl
+*.h5
+*.pt
+*.pth
+*.onnx
+*.pb
+
+# =========================
+# Logs
+# =========================
+*.log
+wandb/
+mlruns/
+tensorboard_logs/
+
+# =========================
+# OS Files
+# =========================
+.DS_Store
+Desktop.ini
+Thumbs.db
+
+# =========================
+# Docker
+# =========================
+*.tar
+docker-compose.override.yml
+
+# =========================
+# Secrets
+# =========================
+.env
+.env.local
+*.pem
+*.key
+credentials.json

@@ -1,0 +1,24 @@
+name: Continuous Deployment
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Build Docker Image
+      run: |
+        docker build -t xai-healthcare-cardiovascular:${{ github.ref_name }} .
+
+    - name: Log in to Registry
+      run: |
+        echo "${{ secrets.CONTAINER_REGISTRY_PASSWORD }}" | docker login -u "${{ secrets.CONTAINER_REGISTRY_USERNAME }}" --password-stdin
+
+    - name: Push Docker Image
+      run: |
+        docker push xai-healthcare-cardiovascular:${{ github.ref_name }}
