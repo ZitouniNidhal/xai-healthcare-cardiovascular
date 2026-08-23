@@ -7,6 +7,7 @@ from src.models.xgboost_model import XGBoostModelWrapper
 from src.models.cnn_ecg import ECGCNN
 from src.models.gradcam_explainer import GradCAMExplainer
 from src.explainability.shap_analysis import calculate_shap_values
+from src.explainability.generate_reports import generate_patient_diagnostic_report
 
 def test_shap_values():
     config = Config()
@@ -35,3 +36,25 @@ def test_gradcam_explainer():
     assert len(heatmap) == 500
     assert np.min(heatmap) >= 0.0
     assert np.max(heatmap) <= 1.0
+
+def test_diagnostic_report_explanation_card():
+    report = generate_patient_diagnostic_report(
+        patient_id="P001",
+        prediction_score=0.82,
+        shap_contributions={"troponin": 0.6, "age": 0.2, "hdl": -0.4, "bmi": -0.1},
+        lime_explanations=[("troponin", 0.5)],
+        text_explanation="High risk requires clinical review.",
+        tabular_score=0.9,
+        ecg_score=0.7,
+    )
+
+    card = report["clinical_explanation_card"]
+    assert card["risk_band"] == "HIGH"
+    assert card["top_positive_drivers"] == ["troponin", "age"]
+    assert card["top_protective_drivers"] == ["hdl", "bmi"]
+    assert card["modality_agreement"] == {
+        "score": 0.8,
+        "label": "HIGH",
+        "tabular_risk_score": 0.9,
+        "ecg_risk_score": 0.7,
+    }

@@ -1,7 +1,40 @@
 import os
 import json
 
-def generate_patient_diagnostic_report(patient_id, prediction_score, shap_contributions, lime_explanations, text_explanation, save_dir=None):
+def _build_explanation_card(prediction_score, shap_contributions, lime_explanations,
+                            tabular_score=None, ecg_score=None):
+    """Build a compact, clinician-readable summary of explanation agreement."""
+    positive_drivers = sorted(
+        ((feature, float(value)) for feature, value in shap_contributions.items() if value > 0),
+        key=lambda item: item[1], reverse=True
+    )[:3]
+    negative_drivers = sorted(
+        ((feature, float(value)) for feature, value in shap_contributions.items() if value < 0),
+        key=lambda item: item[1]
+    )[:3]
+
+    card = {
+        "risk_band": "HIGH" if prediction_score > 0.7 else "MEDIUM" if prediction_score > 0.35 else "LOW",
+        "top_positive_drivers": [feature for feature, _ in positive_drivers],
+        "top_protective_drivers": [feature for feature, _ in negative_drivers],
+        "review_note": "Use this explanation to support clinical review; it is not a diagnosis.",
+    }
+
+    if tabular_score is not None and ecg_score is not None:
+        agreement = 1.0 - abs(float(tabular_score) - float(ecg_score))
+        card["modality_agreement"] = {
+            "score": round(max(0.0, min(1.0, agreement)), 3),
+            "label": "HIGH" if agreement >= 0.8 else "MODERATE" if agreement >= 0.5 else "LOW",
+            "tabular_risk_score": round(float(tabular_score), 3),
+            "ecg_risk_score": round(float(ecg_score), 3),
+        }
+
+    return card
+
+
+def generate_patient_diagnostic_report(patient_id, prediction_score, shap_contributions,
+                                       lime_explanations, text_explanation, save_dir=None,
+                                       tabular_score=None, ecg_score=None):
     """
     Generates a structured medical diagnostic report in JSON format.
     
@@ -30,7 +63,14 @@ def generate_patient_diagnostic_report(patient_id, prediction_score, shap_contri
         "explainability_data": {
             "shap_contributions": shap_contributions,
             "lime_local_weights": lime_explanations
-        }
+        },
+        "clinical_explanation_card": _build_explanation_card(
+            prediction_score,
+            shap_contributions,
+            lime_explanations,
+            tabular_score=tabular_score,
+            ecg_score=ecg_score,
+        ),
     }
     
     if save_dir:

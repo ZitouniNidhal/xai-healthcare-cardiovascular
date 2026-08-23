@@ -138,7 +138,9 @@ def run_pipeline(args):
         shap_contributions={f: float(v) for f, v in zip(X_test.columns, shap_values[sample_idx].values)},
         lime_explanations=lime_exp,
         text_explanation=text_narrative,
-        save_dir=reports_dir
+        save_dir=reports_dir,
+        tabular_score=xgb_probs[sample_idx],
+        ecg_score=cnn_probs[sample_idx, 1],
     )
     
     # 7.3 Grad-CAM for the sample patient's ECG signal

@@ -16,6 +16,7 @@ Cardiovascular diseases (CVDs) are the **#1 cause of death globally** (WHO, 2023
   - **LIME** (Local Interpretable Model-agnostic Explanations) for tabular data
   - **Grad-CAM** for medical image visualization (cardiac MRI/CT scans)
 - **Real-time Explanations**: Contribution charts, heatmaps, and natural language explanations
+- **Clinical Explanation Card**: Every patient report includes risk bands, leading risk/protective drivers, and agreement between tabular and ECG models
 - **Clinical Dashboard**: Interactive interface for physicians with HL7/FHIR compatibility
 - **Clinical Validation**: Benchmarked on MIMIC-III and PhysioNet datasets
 
