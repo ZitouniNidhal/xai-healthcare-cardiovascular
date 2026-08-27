@@ -93,3 +93,6 @@ docker-compose.override.yml
 *.pem
 *.key
 credentials.json
+
+notebooks/data/raw/*.npy
+notebooks/data/processed/*.npy
