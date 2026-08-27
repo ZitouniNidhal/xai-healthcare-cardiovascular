@@ -21,7 +21,7 @@ def _build_explanation_card(prediction_score, shap_contributions, lime_explanati
     }
 
     if tabular_score is not None and ecg_score is not None:
-        agreement = 1.0 - abs(float(tabular_score) - float(ecg_score))
+        agreement = round(1.0 - abs(float(tabular_score) - float(ecg_score)), 3)
         card["modality_agreement"] = {
             "score": round(max(0.0, min(1.0, agreement)), 3),
             "label": "HIGH" if agreement >= 0.8 else "MODERATE" if agreement >= 0.5 else "LOW",
